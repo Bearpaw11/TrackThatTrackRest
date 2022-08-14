@@ -17,7 +17,7 @@ import com.TrackThatTrackRest.entity.User;
 @SpringBootTest(classes = TrackThatTrackRestApplication.class)
 //each test will be a transaction in the DB
 @Transactional
-//Use rollback to not rollback the data so that the DB is not actually changed
+//Use rollback so that the DB is not actually changed whe testing
 @Rollback
 public class TrackThatTrackUserDaoTest {
 
@@ -27,31 +27,38 @@ public class TrackThatTrackUserDaoTest {
 	
 	@Test
 	//test to make sure the userRepository is connected to the class. Make sure userRepositry is notNull
-	void testUserRepositryIsNull() {
+	void testUserRepositryIsNotNull() {
 		Assertions.assertNotNull(userRepository);
 
 	}
 	
 	@Test
-	//test to make sure UserId 15 exists and that all user information is correct
+	//test to make sure UserId 15 exists and that all user information matches the data in the DB
 	void fidUserById() {
+		//set user to a a user with id of 15.
 		User user = userRepository.findById(15).get();
+		//Check to make sure this user exists
 		Assertions.assertNotNull(user);
+		//Check that email matches
 		Assertions.assertEquals("chrisbehrens@yahoo.com", user.getEmail());
+		//Check to see that UserName matches
 		Assertions.assertEquals("ChrisLovesRecords", user.getUserName());
-		Assertions.assertEquals("chris", user.getPassword());
 	}
 	
-	//test update method
+	//Test update/Save method
 	@Test
 		void updateUser() {
+			//set user = to user with id of 21
 			User user = userRepository.findById(21).get();
+			//set userName
 			user.setUserName("ChrissyD");
+			//save the User
 			userRepository.save(user);
+			//check to see if updates match what is expected
 			Assertions.assertEquals("ChrissyD", user.getUserName());
 		}
 	
-	//Test to delete user and then try to findById. AssertFlase is expecting a boolean of false because the the isPresent should return false. 
+	//Test to delete user. Once deleted then try to findById. AssertFalse is expecting a boolean of false because the the isPresent should return false. 
 	@Test
 	void DelteUser() {
 		User user = userRepository.findById(21).get();

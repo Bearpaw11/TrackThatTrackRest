@@ -1,5 +1,7 @@
 package com.TrackThatTrackRest.rest;
 
+
+//This is a Class used to define the blueprint for a UserErrorResponse
 public class UserErrorResponse {
 
 	private int status;
@@ -10,12 +12,14 @@ public class UserErrorResponse {
 		
 	}
 
+	//Constructor
 	public UserErrorResponse(int status, String message, long timeStamp) {
 		this.status = status;
 		this.message = message;
 		this.timeStamp = timeStamp;
 	}
 
+	//Getters and Setters
 	public int getStatus() {
 		return status;
 	}

@@ -17,8 +17,9 @@ import com.TrackThatTrackRest.entity.User;
 import com.TrackThatTrackRest.service.UserService;
 
 
-
+//RestController is used for making restful web services
 @RestController
+//RequestMapping is used to map HTTP requests to handler methods of REST controller
 @RequestMapping("/api")
 public class UsersRestController {
 
