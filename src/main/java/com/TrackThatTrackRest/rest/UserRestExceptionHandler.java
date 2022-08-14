@@ -13,7 +13,7 @@ public class UserRestExceptionHandler {
 	@ExceptionHandler
 	public ResponseEntity<UserErrorResponse> handleException(UserNotFoundException exc) {
 		
-		// create CustomerErrorResponse
+		// create UserrErrorResponse
 		
 		UserErrorResponse error = new UserErrorResponse(
 											HttpStatus.NOT_FOUND.value(),
@@ -26,7 +26,7 @@ public class UserRestExceptionHandler {
 	}
 	
 	
-	// Add another exception handler ... to catch any exception (catch all)
+	//exception handler ... to catch any exception (catch all)
 
 	@ExceptionHandler
 	public ResponseEntity<UserErrorResponse> handleException(Exception exc) {

@@ -2,6 +2,8 @@ package com.TrackThatTrackRest.rest;
 
 import com.TrackThatTrackRest.entity.User;
 
+
+///This is a DTO class used to define the user data we want to expose
 public class UserDTO {
 	private String userName;
 	private String email;
