@@ -35,21 +35,21 @@ public class TrackThatTrackUserDaoTest {
 	@Test
 	//test to make sure UserId 15 exists and that all user information matches the data in the DB
 	void fidUserById() {
-		//set user to a a user with id of 15.
-		User user = userRepository.findById(15).get();
+		//set user to a a user with id of 42.
+		User user = userRepository.findById(42).get();
 		//Check to make sure this user exists
 		Assertions.assertNotNull(user);
 		//Check that email matches
-		Assertions.assertEquals("chrisbehrens@yahoo.com", user.getEmail());
+		Assertions.assertEquals("chrisbehrens1984@gmail.com", user.getEmail());
 		//Check to see that UserName matches
-		Assertions.assertEquals("ChrisLovesRecords", user.getUserName());
+		Assertions.assertEquals("DJChrissyD", user.getUserName());
 	}
 	
 	//Test update/Save method
 	@Test
 		void updateUser() {
-			//set user = to user with id of 21
-			User user = userRepository.findById(21).get();
+			//set user = to user with id of 42
+			User user = userRepository.findById(42).get();
 			//set userName
 			user.setUserName("ChrissyD");
 			//save the User
@@ -61,7 +61,7 @@ public class TrackThatTrackUserDaoTest {
 	//Test to delete user. Once deleted then try to findById. AssertFalse is expecting a boolean of false because the the isPresent should return false. 
 	@Test
 	void DelteUser() {
-		User user = userRepository.findById(21).get();
+		User user = userRepository.findById(42).get();
 		userRepository.deleteById(user.getId());
 		Assertions.assertFalse(userRepository.findById(user.getId()).isPresent());
 	}
