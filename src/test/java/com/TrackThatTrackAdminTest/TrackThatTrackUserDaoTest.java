@@ -17,7 +17,7 @@ import com.TrackThatTrackRest.entity.User;
 @SpringBootTest(classes = TrackThatTrackRestApplication.class)
 //each test will be a transaction in the DB
 @Transactional
-//Use rollback so that the DB is not actually changed whe testing
+//Use rollback so that the DB is not actually changed when testing
 @Rollback
 public class TrackThatTrackUserDaoTest {
 
