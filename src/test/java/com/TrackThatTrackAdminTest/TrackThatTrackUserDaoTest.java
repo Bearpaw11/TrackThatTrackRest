@@ -6,6 +6,8 @@ import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -66,7 +68,14 @@ public class TrackThatTrackUserDaoTest {
 		Assertions.assertFalse(userRepository.findById(user.getId()).isPresent());
 	}
 
-
-	
+	//A parameterized test to check if multiple Id's exist in the user DB
+	@ParameterizedTest(name = "{index}-Run Test with args={0}")
+	//Id's that we want to check. These should all pass a they exist in the users database
+    @ValueSource(ints = { 39, 40, 41, 42, 44, 49 })
+    public void getById(int number) {
+		User user = userRepository.findById(number).get();
+		//Check to make sure this user exists
+		Assertions.assertNotNull(user);
+    }
 	
 }
